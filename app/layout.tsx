@@ -24,9 +24,36 @@ const awesome = localFont({
   variable: "--font-awesome",
 });
 
+const title = "AVORA Residences — Come home to your nature";
+const description = "Thoughtful homes shaped by light, landscape, and the life within. Explore the AVORA Residences concept in Bengaluru.";
+const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? "avora-residences.vercel.app";
+const siteUrl = new URL(process.env.SITE_URL ?? `https://${productionHost}`);
+if (!siteUrl.pathname.endsWith("/")) siteUrl.pathname += "/";
+
+const shareImage = {
+  url: new URL("avora-share.jpg", siteUrl),
+  width: 1200,
+  height: 630,
+  alt: "The AVORA wordmark behind a sunlit villa emerging from clouds",
+};
+
 export const metadata: Metadata = {
-  title: "AVORA Residences — Come home to your nature",
-  description: "Thoughtful homes shaped by light, landscape, and the life within. Explore the AVORA Residences concept in Bengaluru.",
+  title,
+  description,
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "AVORA Residences",
+    title,
+    description,
+    images: [shareImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [shareImage],
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
