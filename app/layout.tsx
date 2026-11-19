@@ -31,10 +31,10 @@ const siteUrl = new URL(process.env.SITE_URL ?? `https://${productionHost}`);
 if (!siteUrl.pathname.endsWith("/")) siteUrl.pathname += "/";
 
 const shareImage = {
-  url: new URL("avora-share.jpg", siteUrl),
+  url: new URL("avora-share.jpg?v=mist", siteUrl),
   width: 1200,
   height: 630,
-  alt: "The AVORA wordmark behind a sunlit villa emerging from clouds",
+  alt: "The peach AVORA wordmark above a villa wrapped in soft mist",
 };
 
 export const metadata: Metadata = {
