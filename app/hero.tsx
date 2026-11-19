@@ -140,7 +140,6 @@ export function Hero() {
 
       const revealText = ".reveal-kicker, .reveal-line, .reveal-description";
       const revealActions = ".reveal-link, .reveal-signature";
-      gsap.set(".cloud-wisp, .cloud-veil", { opacity: 0 });
       gsap.set(".reveal-content", { autoAlpha: 0 });
       gsap.set(revealText, { y: 26, opacity: 0 });
       gsap.set(revealActions, { y: 12, autoAlpha: 0 });
@@ -154,24 +153,18 @@ export function Hero() {
           invalidateOnRefresh: true,
         },
       })
-        .to(".sky-wordmark", { yPercent: -36, duration: 0.43, ease: "sine.inOut" }, 0)
+        .to(".sky-wordmark", { yPercent: -36, duration: 0.65, ease: "sine.inOut" }, 0)
         .to(".wordmark-mist", { yPercent: -17, xPercent: 5, duration: 0.78, ease: "sine.inOut" }, 0.05)
-        .addLabel("clouds", 0.24)
-        .to(".cloud-veil", { opacity: 0.86, duration: 0.38, ease: "sine.inOut" }, "clouds+=0.15")
-        .to(house, { "--cutout-feather": "30%", duration: 0.39, ease: "sine.inOut" }, "clouds+=0.2")
-        .to(".cloud-veil", { yPercent: 10, scale: 1.12, duration: 1.12, ease: "sine.inOut" }, "clouds+=0.15")
-        .to(".cloud-back", { xPercent: -15, yPercent: -11, autoAlpha: 0, duration: 0.59, ease: "sine.inOut" }, "clouds")
-        .to(".cloud-middle", { xPercent: 28, yPercent: 8, autoAlpha: 0, duration: 0.62, ease: "sine.inOut" }, "clouds+=0.04")
-        .to(".cloud-extension", { yPercent: 8, scale: 1.04, autoAlpha: 0, duration: 0.62, ease: "sine.inOut" }, "clouds+=0.14")
-        .to(".cloud-left", { xPercent: -32, yPercent: 11, scale: 1.06, autoAlpha: 0, duration: 0.66, ease: "sine.inOut" }, "clouds+=0.06")
-        .to(".cloud-right", { xPercent: 32, yPercent: 13, scale: 1.08, autoAlpha: 0, duration: 0.65, ease: "sine.inOut" }, "clouds+=0.07")
+        .to(".cloud-veil", { yPercent: 15, scale: 1.12, duration: 1.65, ease: "sine.inOut" }, 0)
+        .addLabel("clouds", 0.46)
+        .to(house, { "--cutout-feather": "34%", duration: 0.55, ease: "sine.inOut" }, "clouds")
         .to(".cloud-wisp-left", { xPercent: -23, yPercent: 16, scale: 1.16, duration: 1.18, ease: "sine.inOut" }, "clouds+=0.25")
         .to(".cloud-wisp-right", { xPercent: 23, yPercent: 19, scale: 1.19, duration: 1.09, ease: "sine.inOut" }, "clouds+=0.32")
         .to(".cloud-wisp-left", { opacity: 0.39, duration: 0.4, ease: "sine.inOut" }, "clouds+=0.25")
         .to(".cloud-wisp-right", { opacity: 0.32, duration: 0.38, ease: "sine.inOut" }, "clouds+=0.32")
         .to(".cloud-wisp-centre", { yPercent: 12, scale: 1.22, duration: 1.08, ease: "sine.inOut" }, "clouds+=0.36")
         .to(".cloud-wisp-centre", { opacity: 0.37, duration: 0.36, ease: "sine.inOut" }, "clouds+=0.36")
-        .addLabel("dock", 0.89)
+        .addLabel("dock", 1.11)
         .to(header, { paddingBlock: "8px", backgroundColor: "#092f43f5", duration: 0.31, ease: "sine.inOut" }, "dock")
         .addLabel("house", "dock+=0.16")
         .to(house, {
@@ -216,9 +209,7 @@ export function Hero() {
           <div className="cloud cloud-middle" aria-hidden="true"><Asset name="avora-cloud-distant.webp" eager priority /></div>
           <img ref={cutout} src={`${assetRoot}/modern-villa-at-golden-hour-background-removed1.png`}
             className="hero-cutout" alt="" fetchPriority="high" decoding="async" />
-          <div className="cloud-extension" aria-hidden="true" />
-          <div className="cloud cloud-front cloud-left" aria-hidden="true"><Asset name="avora-cloud-foreground.webp" eager priority /></div>
-          <div className="cloud cloud-front cloud-right" aria-hidden="true"><Asset name="avora-cloud-foreground.webp" eager priority /></div>
+          <div className="cloud cloud-front" aria-hidden="true"><Asset name="avora-cloud-foreground.webp" eager priority /></div>
           <div className="cloud-veil" aria-hidden="true" />
           <div className="cloud-wisp cloud-wisp-left" aria-hidden="true" />
           <div className="cloud-wisp cloud-wisp-right" aria-hidden="true" />

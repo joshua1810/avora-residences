@@ -23,10 +23,12 @@ const projects = [
     ...privateVillas,
   },
   {
-    name: "Aven",
+    name: "Solace",
     image: "avora-solace-courtyard.png",
-    description: "Serene, contemporary, refined",
-    ...privateVillas,
+    type: "Private Villa",
+    location: privateVillas.location,
+    description: "An intimate collection of private villas designed for openness, greenery, and relaxed everyday living.",
+    focus: "Privacy and indoor–outdoor connection",
   },
   {
     name: "Lumina",
@@ -46,7 +48,7 @@ const projects = [
   },
 ];
 
-const initialProjectIndex = projects.findIndex((project) => project.name === "Aven");
+const initialProjectIndex = projects.findIndex((project) => project.name === "Solace");
 const projectCount = projects.length;
 const galleryProjects = [...projects, ...projects, ...projects];
 
@@ -131,7 +133,7 @@ export function SelectedProjects() {
     <section id="projects" tabIndex={-1} className="solace" aria-labelledby="solace-title">
       <div className="solace-inner">
         <header className="solace-header shell">
-          <p>03 / Design Studies</p>
+          <p>04 / Projects</p>
           <h2 id="solace-title"><em>avora</em> {selected.name}</h2>
           <p>Bengaluru, India</p>
         </header>

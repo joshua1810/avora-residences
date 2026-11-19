@@ -63,15 +63,13 @@ em, .wordmark { font-family: var(--font-awesome), Georgia, serif; font-style: it
 }
 .sky-gradient { position: absolute; inset: 0; background: linear-gradient(180deg, #03406f 12.96%, #0562aa 49.82%, #067bd5 100%); }
 .sky-wordmark { position: absolute; z-index: 2; top: 16.55%; left: 50%; translate: -50% 0; color: var(--peach); font-size: 17.36cqw; line-height: 1.16; }
-.cloud { position: absolute; overflow: hidden; }
+.cloud { display: none; position: absolute; overflow: hidden; }
 .cloud img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .cloud-back { z-index: 1; left: -2%; top: 22%; width: 104%; height: 51%; }
 .cloud-middle { z-index: 3; left: -10%; top: 36%; width: 120%; height: 49%; }
 .cloud-middle img { transform: scaleX(-1); }
 .hero-cutout { position: absolute; z-index: 4; left: 14.72%; top: 32.03%; width: 70.625%; height: 57.43%; object-fit: cover; }
 .cloud-front { z-index: 5; left: -3%; top: 16%; width: 106%; height: 85%; }
-
-.cloud-right, .cloud-extension, .cloud-wisp, .cloud-veil, .wordmark-mist { display: none; }
 
 .architectural-reveal { color: #fff; min-height: clamp(540px, 56.8vw, 1100px); background: #372919; display: grid; align-items: end; }
 .architectural-reveal::after, .studies-intro::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1; }
@@ -184,7 +182,7 @@ em, .wordmark { font-family: var(--font-awesome), Georgia, serif; font-style: it
   top: var(--image-top, 0%);
   transition: transform 420ms cubic-bezier(.22, 1, .36, 1);
 }
-.solace-view[data-project="Aven"] { --image-width: 100%; --image-top: -35%; }
+.solace-view[data-project="Solace"] { --image-width: 100%; --image-top: -35%; }
 .solace-view[data-project="Eden"] { --image-width: 115.84%; --image-left: -7.92%; }
 .solace-view[data-project="Lumina"] { --image-width: 103.62%; --image-left: -1.81%; }
 .solace-view[data-project="Maison"] { --image-width: 117.19%; --image-left: -8.6%; --image-top: -8.6%; }
@@ -273,8 +271,10 @@ em, .wordmark { font-family: var(--font-awesome), Georgia, serif; font-style: it
   .nav-inner > .wordmark { width: clamp(49px, 4.65vw, 67px); font-size: clamp(23px, 2.083vw, 30px); }
   .nav-enquiry { width: clamp(88px, 7.29vw, 105px); min-height: clamp(29px, 2.43vw, 35px); justify-content: center; }
   .approach .editorial-heading > span { white-space: nowrap; letter-spacing: -.024em; }
+  .solace-description { min-height: 2lh; }
 }
 
+.hero-stage { --sky-geometry: 69.1667vw; }
 .hero-sequence[data-motion] { height: 254svh; }
 .hero-sequence[data-motion] .hero-stage {
   --sky-geometry: min(69.1667vw, 100svh);
@@ -293,32 +293,17 @@ em, .wordmark { font-family: var(--font-awesome), Georgia, serif; font-style: it
 }
 .hero-sequence[data-motion] .sky { z-index: 1; pointer-events: none; }
 .hero-sequence[data-motion] .sky-wordmark { top: calc(var(--sky-geometry) * .1655); }
-.hero-sequence[data-motion] .cloud-back { top: calc(var(--sky-geometry) * .22); height: calc(var(--sky-geometry) * .51); }
-.hero-sequence[data-motion] .cloud-middle { top: calc(var(--sky-geometry) * .36); height: calc(var(--sky-geometry) * .49); }
 .hero-sequence[data-motion] .hero-cutout {
   top: calc(var(--sky-geometry) * .3203);
   height: auto;
   aspect-ratio: 1672 / 941;
-  --cutout-feather: 0%;
+  --cutout-feather: 32%;
   mask-image: linear-gradient(
     #000 calc(100% - var(--cutout-feather) * 1.9),
     transparent calc(100% - var(--cutout-feather) * .82)
   );
 }
-.hero-sequence[data-motion] .cloud-front { top: calc(var(--sky-geometry) * .16); height: calc(var(--sky-geometry) * .85); }
-.hero-sequence[data-motion] .cloud-front {
-  --cloud-height-mask: linear-gradient(#000, #000);
-  mask-image: var(--cloud-side-mask), var(--cloud-height-mask);
-  mask-composite: intersect;
-}
-.hero-sequence[data-motion] .cloud-left { --cloud-side-mask: linear-gradient(90deg, #000 46%, transparent 65%); }
-.hero-sequence[data-motion] .cloud-right {
-  display: block;
-  --cloud-side-mask: linear-gradient(270deg, #000 48%, transparent 65%);
-}
-
-.hero-sequence[data-motion] .wordmark-mist {
-  display: block;
+.wordmark-mist {
   position: absolute;
   z-index: 1;
   inset: calc(var(--sky-geometry) * .075) -3% auto;
@@ -336,23 +321,19 @@ em, .wordmark { font-family: var(--font-awesome), Georgia, serif; font-style: it
 .wordmark-mist::before { left: 1%; top: -3%; opacity: .28; }
 .wordmark-mist::after { right: 0; top: 13%; opacity: .23; transform: scaleX(-1); }
 
-.hero-sequence[data-motion] .cloud-veil {
-  display: block;
+.cloud-veil {
   position: absolute;
   z-index: 6;
-  top: calc(var(--sky-geometry) * .49);
-  left: -9%;
-  width: 118%;
-  height: 46%;
-  opacity: 0;
+  top: calc(var(--sky-geometry) * .43);
+  inset-inline: -5%;
+  height: calc(var(--sky-geometry) * .65);
+  opacity: .97;
   background:
-    radial-gradient(ellipse 54% 26% at 48% 50%, #bacbd6bf, #aebfc87a 52%, transparent),
-    url("../public/assets/avora-cloud-foreground.webp") center 89% / 100% auto no-repeat;
-  filter: blur(8px);
-  mask-image:
-    radial-gradient(ellipse 63% 55% at 50% 60%, #000 25%, #000d 58%, transparent 100%),
-    linear-gradient(transparent, #000 15%, #000 72%, transparent);
-  mask-composite: intersect;
+    radial-gradient(ellipse 52% 37% at 51% 43%, #d0daddf2, #b9cbd4cf 52%, transparent),
+    url("../public/assets/avora-cloud-foreground.webp") center bottom / 106% 190% no-repeat,
+    linear-gradient(transparent 10%, #adbed099 36%, #9fb8c89c 65%, transparent);
+  filter: blur(clamp(12px, 1.25vw, 24px));
+  mask-image: linear-gradient(transparent, #000 24%, #000 69%, transparent);
 }
 
 .hero-sequence[data-motion] .cloud-wisp {
@@ -395,25 +376,6 @@ em, .wordmark { font-family: var(--font-awesome), Georgia, serif; font-style: it
 }
 
 @media (max-aspect-ratio: 10/7) {
-  .hero-sequence[data-motion] .cloud-extension {
-    display: block;
-    position: absolute;
-    z-index: 4;
-    inset: calc(var(--sky-geometry) * .825) 0 0;
-    background: linear-gradient(180deg, #c8c8bf, #8c959d);
-    mask-image: linear-gradient(transparent, #000 min(11vw, 145px));
-  }
-  .hero-sequence[data-motion] .cloud-extension::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url("../public/assets/avora-cloud-foreground.webp") center bottom / cover no-repeat;
-    filter: blur(13px);
-    opacity: .82;
-  }
-  .hero-sequence[data-motion] .cloud-front {
-    --cloud-height-mask: linear-gradient(#000 73%, transparent);
-  }
   .hero-sequence[data-motion] .architectural-reveal {
     --reveal-extra: max(0px, calc((100svh - 70.875vw) / 2 - 1vw));
   }
@@ -457,6 +419,8 @@ em, .wordmark { font-family: var(--font-awesome), Georgia, serif; font-style: it
   .sky { min-height: 76svh; aspect-ratio: 1 / 1.08; }
   .sky-wordmark { top: 23%; font-size: 25cqw; }
   .hero-cutout { width: 114%; height: auto; left: -7%; top: auto; bottom: 14%; }
+  .cloud { display: block; }
+  .cloud-veil, .wordmark-mist { display: none; }
   .cloud-back { width: 162%; left: -31%; top: 37%; height: 44%; }
   .cloud-middle { width: 162%; left: -26%; top: 44%; height: 49%; }
   .cloud-front { width: 160%; left: -32%; top: 64%; height: 36%; }
